@@ -1,12 +1,25 @@
 package instapay_project.User;
 
+import instapay_project.account.Account;
+import instapay_project.api.API;
+
 public class User {
     String userName;
     String mobileNumber;
     String password;
-    //Account account;
+    Account account;
     UserType userType;
 
+
+
+    User(String userName,String mobileNumber,String password,Account account,UserType type){
+        this.userName=userName;
+        this.mobileNumber=mobileNumber;
+        this.password=password;
+        this.account=account;
+        this.userType=type;
+
+    }
     public String getUserName(){
         return userName;
     }
@@ -17,7 +30,7 @@ public class User {
         return password;
     }
     public double getBalance(){
-        //waiting for api
+
         return 0;
     }
 
