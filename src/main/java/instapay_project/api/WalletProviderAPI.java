@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * @author Youssef Moataz
+ */
 public class WalletProviderAPI extends API{
 
     private static WalletProviderAPI instance = null;
@@ -16,6 +19,10 @@ public class WalletProviderAPI extends API{
     private WalletProviderAPI() {
     }
 
+    /**
+     * To apply Singleton pattern, this method returns single instance of this class.
+     * @return WalletProviderAPI instance
+     */
     public static WalletProviderAPI getInstance() {
         if (instance == null) {
             instance = new WalletProviderAPI();

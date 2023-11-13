@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * @author Youssef Moataz
+ */
 public class BankAPI extends API {
 
     private static BankAPI instance = null;
@@ -15,6 +18,10 @@ public class BankAPI extends API {
     private BankAPI() {
     }
 
+    /**
+     * To apply Singleton pattern, this method returns single instance of this class.
+     * @return BankAPI instance
+     */
     public static BankAPI getInstance() {
         if (instance == null) {
             instance = new BankAPI();
