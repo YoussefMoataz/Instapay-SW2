@@ -1,4 +1,4 @@
-package instapay_project;
+package instapay_project.User;
 
 public class User {
     String userName;
