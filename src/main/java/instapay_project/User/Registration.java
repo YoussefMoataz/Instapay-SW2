@@ -1,6 +1,8 @@
 package instapay_project.User;
 
 import instapay_project.account.Account;
+import instapay_project.api.APIFacade;
+import instapay_project.otp.OTPGenerator;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -29,7 +31,7 @@ abstract public class Registration {
                 correctPhoneNumber=false;
             } else if (phoneNumber.charAt(1)!='1') {
                 correctPhoneNumber=false;
-            } else if (phoneNumber.charAt(2)!='0'&&phoneNumber.charAt(2)!='2' &&phoneNumber.charAt(2)!='5') {
+            } else if (phoneNumber.charAt(2)!='0'&&phoneNumber.charAt(2)!='2' &&phoneNumber.charAt(2)!='5'&&phoneNumber.charAt(2)!='1') {
                 correctPhoneNumber=false;
             }else{
                 correctPhoneNumber=true;
@@ -45,7 +47,7 @@ abstract public class Registration {
         Pattern pattern=Pattern.compile(regex);
         while(!strongPassword){
             Scanner sc=new Scanner(System.in);
-            System.out.println("Enter phone number:");
+            System.out.println("Enter password:");
             password = sc.nextLine();
             Matcher matcher=pattern.matcher(password);
             if(matcher.matches()){
@@ -54,6 +56,21 @@ abstract public class Registration {
 
         }
         return password;
+    }
+    public boolean handleOTP(){
+        OTPGenerator otp=new OTPGenerator();
+        String otpCode=otp.sendMeAnOTP(6);
+        String userOTP;
+        System.out.println("sent otp:"+otpCode);
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter OTP:");
+        userOTP = sc.nextLine();
+        if(userOTP.equals(otpCode)){
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     public abstract Account verify(String mobileNumber);
