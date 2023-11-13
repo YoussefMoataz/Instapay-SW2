@@ -3,9 +3,17 @@ package instapay_project.api;
 import instapay_project.user.UserType;
 import instapay_project.account.Account;
 
+/**
+ * @author Youssef Moataz
+ */
 public class APIFacade {
 
-    public Account getAccount(UserType userType, String mobileNumber){
+    /**
+     * @param userType {@link UserType}
+     * @param mobileNumber User mobile number to search with.
+     * @return The found {@link Account}, null if not found.
+     */
+    public static Account getAccount(UserType userType, String mobileNumber){
 
         if (userType == UserType.BANK_USER){
             return BankAPI.getInstance().findAccount(mobileNumber);
