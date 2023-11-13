@@ -1,4 +1,6 @@
-package instapay_project;
+package instapay_project.User;
+
+import instapay_project.account.Account;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -53,4 +55,6 @@ abstract public class Registration {
         }
         return password;
     }
+
+    public abstract Account verify(String mobileNumber);
 }
