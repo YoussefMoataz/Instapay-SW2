@@ -1,4 +1,4 @@
-package instapay_project.User;
+package instapay_project.user;
 
 public enum UserType {
     BANK_USER,

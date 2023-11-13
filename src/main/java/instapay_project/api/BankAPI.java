@@ -5,6 +5,7 @@ import instapay_project.account.BankAccount;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class BankAPI extends API {
 
@@ -26,7 +27,7 @@ public class BankAPI extends API {
     public Account findAccount(String mobileNumber) {
 
         for (Map.Entry<String, BankAccount> a : accounts.entrySet()) {
-            if (a.getKey() == mobileNumber) {
+            if (Objects.equals(a.getKey(), mobileNumber)) {
                 return a.getValue();
             }
         }

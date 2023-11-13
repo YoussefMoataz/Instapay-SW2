@@ -1,6 +1,6 @@
 package instapay_project.api;
 
-import instapay_project.User.UserType;
+import instapay_project.user.UserType;
 import instapay_project.account.Account;
 
 public class APIFacade {
