@@ -1,7 +1,7 @@
 package instapay_project.user;
 
+
 import instapay_project.account.Account;
-import instapay_project.api.APIFacade;
 
 public class User {
     String userName;
