@@ -1,7 +1,7 @@
 package instapay_project.api;
 
-import instapay_project.user.UserType;
 import instapay_project.account.Account;
+import instapay_project.user.UserType;
 
 /**
  * @author Youssef Moataz
