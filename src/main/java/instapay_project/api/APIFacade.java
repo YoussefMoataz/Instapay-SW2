@@ -13,7 +13,7 @@ public class APIFacade {
      * @param mobileNumber User mobile number to search with.
      * @return The found {@link Account}, null if not found.
      */
-    public Account getAccount(UserType userType, String mobileNumber){
+    public static Account getAccount(UserType userType, String mobileNumber){
 
         if (userType == UserType.BANK_USER){
             return BankAPI.getInstance().findAccount(mobileNumber);

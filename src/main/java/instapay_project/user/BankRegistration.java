@@ -12,8 +12,7 @@ public class BankRegistration extends Registration {
 
     @Override
     public Account verify(String mobileNumber) {
-        APIFacade api = new APIFacade();
-        Account acc = api.getAccount(UserType.BANK_USER, mobileNumber);
+        Account acc = APIFacade.getAccount(UserType.BANK_USER, mobileNumber);
         return acc;
     }
 }

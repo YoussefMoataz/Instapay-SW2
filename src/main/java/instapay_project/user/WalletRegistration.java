@@ -13,8 +13,7 @@ public class WalletRegistration extends Registration {
 
     @Override
     public Account verify(String mobileNumber) {
-        APIFacade api = new APIFacade();
-        Account acc = api.getAccount(UserType.WALLET_USER, mobileNumber);
+        Account acc = APIFacade.getAccount(UserType.WALLET_USER, mobileNumber);
         return acc;
     }
 }

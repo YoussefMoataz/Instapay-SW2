@@ -88,12 +88,7 @@ abstract public class Registration {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter OTP:");
         userOTP = sc.nextLine();
-        if (userOTP.equals(otpCode)) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return userOTP.equals(otpCode);
     }
 
     public abstract Account verify(String mobileNumber);
