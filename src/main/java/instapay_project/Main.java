@@ -10,9 +10,5 @@ import instapay_project.api.BankAPI;
 
 public class Main {
     public static void main(String[] args) {
-        BankAccount b=new BankAccount("011","01011111111",100.45);
-        BankAPI.getInstance().addAccount(b);
-        BankRegistration r=new BankRegistration();
-        r.register();
     }
 }
