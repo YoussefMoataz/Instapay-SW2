@@ -1,4 +1,6 @@
 package instapay_project.menu;
 
-public abstract class MenuItem {
+public interface MenuItem {
+    void printCommand();
+    void doAction();
 }
