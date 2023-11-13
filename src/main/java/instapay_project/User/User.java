@@ -2,6 +2,7 @@ package instapay_project.User;
 
 import instapay_project.account.Account;
 import instapay_project.api.API;
+import instapay_project.api.APIFacade;
 
 public class User {
     String userName;
@@ -30,8 +31,9 @@ public class User {
         return password;
     }
     public double getBalance(){
-
-        return 0;
+        APIFacade apiFacade = new APIFacade();
+        double balance = apiFacade.getAccount(userType,userName).getBalance();
+        return  balance;
     }
 
 }
