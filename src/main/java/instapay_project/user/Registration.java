@@ -8,7 +8,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 abstract public class Registration {
-    abstract public User register();
+     public User register(){
+        String name = getName();
+        String mobileNumber = getMobileNumber();
+        if (handleOTP()) {
+
+            Account account = verify(mobileNumber);
+            if (account != null) {
+                String password = getPassword();
+                User user = new User(name, mobileNumber, password, account, getUserType());
+                System.out.println("Registered successfully");
+                return user;
+            } else {
+                System.out.println("this mobile number is not connected with a bank account");
+                return null;
+            }
+        } else {
+            System.out.println("Wrong OTP try again later");
+            return null;
+        }
+    }
 
     public String getName() {
         String name;
@@ -41,6 +60,7 @@ abstract public class Registration {
         }
         return phoneNumber;
     }
+    abstract public UserType getUserType();
 
     public String getPassword() {
         boolean strongPassword = false;

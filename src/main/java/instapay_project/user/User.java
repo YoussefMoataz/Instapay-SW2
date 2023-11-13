@@ -32,9 +32,7 @@ public class User {
     }
 
     public double getBalance() {
-        APIFacade apiFacade = new APIFacade();
-        double balance = apiFacade.getAccount(userType, userName).getBalance();
-        return balance;
+        return account.getBalance();
     }
 
 }
