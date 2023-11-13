@@ -10,13 +10,12 @@ public class User {
     Account account;
     UserType userType;
 
-    User(String userName, String mobileNumber, String password, Account account, UserType type) {
+    public User(String userName, String mobileNumber, String password, Account account, UserType type) {
         this.userName = userName;
         this.mobileNumber = mobileNumber;
         this.password = password;
         this.account = account;
         this.userType = type;
-
     }
 
     public String getUserName() {
