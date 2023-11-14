@@ -44,6 +44,16 @@ public class WalletProviderAPI extends API{
     }
 
     @Override
+    public Account findAccountByAccountNumber(String accountNumber) {
+        for (Map.Entry<String, WalletAccount> a : accounts.entrySet()) {
+            if (Objects.equals(a.getValue().getWalletNumber(), accountNumber)) {
+                return a.getValue();
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean updateBalance(String mobileNumber, Double amount) {
 
         if (accounts.containsKey(mobileNumber)) {
@@ -58,5 +68,15 @@ public class WalletProviderAPI extends API{
     @Override
     public void addAccount(Account account) {
         accounts.put(account.getMobileNumber(), (WalletAccount) account);
+    }
+
+    @Override
+    public boolean isAccountExists(String accountNumber) {
+        for (Map.Entry<String, WalletAccount> a : accounts.entrySet()) {
+            if (Objects.equals(a.getValue().getWalletNumber(), accountNumber)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
