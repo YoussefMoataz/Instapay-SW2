@@ -2,6 +2,7 @@ package instapay_project.api;
 
 import instapay_project.account.Account;
 import instapay_project.account.BankAccount;
+import instapay_project.account.WalletAccount;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,16 @@ public class BankAPI extends API {
     }
 
     @Override
+    public Account findAccountByAccountNumber(String accountNumber) {
+        for (Map.Entry<String, BankAccount> a : accounts.entrySet()) {
+            if (Objects.equals(a.getValue().getAccountNumber(), accountNumber)) {
+                return a.getValue();
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean updateBalance(String mobileNumber, Double amount) {
 
         if (accounts.containsKey(mobileNumber)) {
@@ -57,5 +68,15 @@ public class BankAPI extends API {
     @Override
     public void addAccount(Account account) {
         accounts.put(account.getMobileNumber(), (BankAccount) account);
+    }
+
+    @Override
+    public boolean isAccountExists(String accountNumber) {
+        for (Map.Entry<String, BankAccount> a : accounts.entrySet()) {
+            if (Objects.equals(a.getValue().getAccountNumber(), accountNumber)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

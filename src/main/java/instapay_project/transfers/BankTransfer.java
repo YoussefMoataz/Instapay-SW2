@@ -23,18 +23,18 @@ public class BankTransfer implements Transfer{
         }
     }
 
-    public static void main(String[] args) {
-        Account account1 = new BankAccount("acc1", "01111", 150.0);
-        Account account2 = new BankAccount("acc2", "02222", 70.0);
-        BankAPI.getInstance().addAccount(account1);
-        BankAPI.getInstance().addAccount(account2);
-        User user1 = new User("youssef", "01111", "xy", account1, UserType.BANK_USER);
-        User user2 = new User("maged", "02222", "xy", account2, UserType.BANK_USER);
-        System.out.println("Before transaction: " + user1.getBalance() + "   " + user2.getBalance());
-        BankTransfer bankTransfer = new BankTransfer();
-        TransferProcessor transferProcessor = new TransferProcessor();
-        transferProcessor.setTransfer(bankTransfer);
-        transferProcessor.makeTransfer("01111", "02222", 80.0);
-        System.out.println("After transaction: " + user1.getBalance() + "   " + user2.getBalance());
-    }
+//    public static void main(String[] args) {
+//        Account account1 = new BankAccount("acc1", "01111", 150.0);
+//        Account account2 = new BankAccount("acc2", "02222", 70.0);
+//        BankAPI.getInstance().addAccount(account1);
+//        BankAPI.getInstance().addAccount(account2);
+//        User user1 = new User("youssef", "01111", "xy", account1, UserType.BANK_USER);
+//        User user2 = new User("maged", "02222", "xy", account2, UserType.BANK_USER);
+//        System.out.println("Before transaction: " + user1.getBalance() + "   " + user2.getBalance());
+//        BankTransfer bankTransfer = new BankTransfer();
+//        TransferProcessor transferProcessor = new TransferProcessor();
+//        transferProcessor.setTransfer(bankTransfer);
+//        transferProcessor.makeTransfer("01111", "02222", 80.0);
+//        System.out.println("After transaction: " + user1.getBalance() + "   " + user2.getBalance());
+//    }
 }

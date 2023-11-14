@@ -1,8 +1,10 @@
 package instapay_project.menu;
 
-public class PayBillMenuItem implements MenuItem {
+import instapay_project.InstapayManager;
 
-    String command = "Pay bills";
+public class LogoutMenuItem implements MenuItem{
+
+    String command = "Logout";
 
     @Override
     public void printCommand() {
@@ -16,7 +18,6 @@ public class PayBillMenuItem implements MenuItem {
 
     @Override
     public void doAction() {
-        // todo bTP.showBills()
+        InstapayManager.getInstance().logout();
     }
 }
-

@@ -1,25 +1,35 @@
 package instapay_project;
 
-import instapay_project.menu.MenuItem;
+import instapay_project.api.InstapayAPI;
+import instapay_project.menu.*;
 import instapay_project.user.BankRegistration;
 import instapay_project.user.Registration;
 import instapay_project.user.User;
+import instapay_project.user.UserType;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InstapayManager {
+    private static InstapayManager instance;
     private static ArrayList<User> users;
-    private ArrayList<MenuItem> menuItems;
+    private static ArrayList<MenuItem> menuItems;
     private static User currentUser;
 
-    InstapayManager() {
-        users = new ArrayList<>();
-        menuItems = new ArrayList<>();
-        currentUser = null;
+    private InstapayManager() {
     }
 
-    private boolean loginUser() {
+    public static InstapayManager getInstance() {
+        if (instance == null) {
+            instance = new InstapayManager();
+            users = InstapayAPI.getInstance().getUsers();
+            menuItems = new ArrayList<>();
+            currentUser = null;
+        }
+        return instance;
+    }
+
+    private static boolean loginUser() {
         String inputedUserName;
         String inputedPassword;
         Scanner sc = new Scanner(System.in);
@@ -48,7 +58,7 @@ public class InstapayManager {
 
     }
 
-    private boolean registerUser() {
+    private static boolean registerUser() {
 
         String choice = "";
         while (choice != "1" || choice != "2") {
@@ -74,31 +84,103 @@ public class InstapayManager {
         return false;
     }
 
+    public void logout() {
+        currentUser = null;
+        System.out.println("Logged out!");
+        showMainMenu();
+    }
+
     public static User getCurrentUser() {
         return currentUser;
     }
 
-    private void buildMenu(){
+    private void buildMenu() {
+
+        menuItems.clear();
+
+        if (currentUser != null) {
+            if (currentUser.getUserType() == UserType.BANK_USER) {
+                menuItems.add(new WalletTransferMenuItem());
+                menuItems.add(new BankTransferMenuItem());
+                menuItems.add(new InstapayTransferMenuItem());
+                menuItems.add(new BalanceInquiryMenuItem());
+                menuItems.add(new PayBillMenuItem());
+            } else if (currentUser.getUserType() == UserType.WALLET_USER) {
+                menuItems.add(new WalletTransferMenuItem());
+                menuItems.add(new InstapayTransferMenuItem());
+                menuItems.add(new BalanceInquiryMenuItem());
+                menuItems.add(new PayBillMenuItem());
+            }
+            menuItems.add(new LogoutMenuItem());
+        }
 
     }
 
-    private void showMenu(){
+    private void showUserMenu() {
+
+        buildMenu();
+
+        while (true) {
+
+            System.out.println("Choose action:");
+            for (int i = 0; i < menuItems.size(); i++) {
+                System.out.println((i + 1) + "- " + menuItems.get(i).getCommand());
+            }
+
+            Integer choice = new Scanner(System.in).nextInt();
+
+            if (choice > 0 && choice <= menuItems.size()) {
+                menuItems.get(choice - 1).doAction();
+            } else {
+                System.out.println("Invalid action");
+            }
+
+        }
 
     }
 
-    public void run(){
-//        registerUser();
-//        loginUser();
+    private void showMainMenu() {
+        Integer choice;
+        while (true) {
 
-    }
+            System.out.println("""
+                    Choose action:
+                    1- Register
+                    2- Login
+                    0- Exit""");
 
-    public static User getUser(String userName) {
-        User user = null;
-        for(User u: users){
-            if(u.getUserName().equals(userName)){
-                user = u;
+            choice = new Scanner(System.in).nextInt();
+
+            if (choice == 0) {
+                System.exit(0);
+            } else if (choice == 1) {
+                break;
+            } else if (choice == 2) {
+                break;
+            } else {
+                System.out.println("Invalid action");
             }
         }
-        return user;
+
+        if (choice == 1) {
+            if (registerUser()) {
+                showUserMenu();
+            }
+        } else if (choice == 2) {
+            if (loginUser()) {
+                showUserMenu();
+            }
+        }
+
     }
+
+    public void run() {
+
+        System.out.println("Welcome to Instapay!");
+
+        showMainMenu();
+
+    }
+
 }
+
