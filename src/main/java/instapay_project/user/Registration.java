@@ -45,16 +45,15 @@ abstract public class Registration {
             Scanner sc = new Scanner(System.in);
             System.out.println("Enter phone number:");
             phoneNumber = sc.nextLine();
-            if (phoneNumber.length() != 11) {
-                correctPhoneNumber = false;
-            } else if (phoneNumber.charAt(0) != '0') {
-                correctPhoneNumber = false;
-            } else if (phoneNumber.charAt(1) != '1') {
-                correctPhoneNumber = false;
-            } else if (phoneNumber.charAt(2) != '0' && phoneNumber.charAt(2) != '2' && phoneNumber.charAt(2) != '5' && phoneNumber.charAt(2) != '1') {
-                correctPhoneNumber = false;
+            String regex = "0{1}1{1}[0125]{1}[0-9]{8}";
+
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(phoneNumber);
+
+            if (matcher.matches()) {
+                correctPhoneNumber=true;
             } else {
-                correctPhoneNumber = true;
+                System.out.println("enter correct number format");
             }
 
         }
