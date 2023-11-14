@@ -1,9 +1,7 @@
 package instapay_project.transfers;
 
 import instapay_project.account.Account;
-import instapay_project.account.BankAccount;
 import instapay_project.account.WalletAccount;
-import instapay_project.api.BankAPI;
 import instapay_project.api.WalletProviderAPI;
 import instapay_project.user.User;
 import instapay_project.user.UserType;
