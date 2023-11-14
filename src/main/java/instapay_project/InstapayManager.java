@@ -101,8 +101,4 @@ public class InstapayManager {
         }
         return user;
     }
-
-//    public static void setCurrentUser(User user){
-//        currentUser = user;
-//    }
 }
