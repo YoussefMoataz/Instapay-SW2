@@ -90,7 +90,7 @@ public class InstapayManager {
         showMainMenu();
     }
 
-    public User getCurrentUser() {
+    public static User getCurrentUser() {
         return currentUser;
     }
 
