@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InstapayManager {
-    private ArrayList<User> users;
+    private static ArrayList<User> users;
     private ArrayList<MenuItem> menuItems;
     private static User currentUser;
 
@@ -92,4 +92,13 @@ public class InstapayManager {
 
     }
 
+    public static User getUser(String userName) {
+        User user = null;
+        for(User u: users){
+            if(u.getUserName().equals(userName)){
+                user = u;
+            }
+        }
+        return user;
+    }
 }

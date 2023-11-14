@@ -33,5 +33,8 @@ public class User {
     public double getBalance() {
         return account.getBalance();
     }
+    public UserType getUserType(){
+        return userType;
+    }
 
 }
