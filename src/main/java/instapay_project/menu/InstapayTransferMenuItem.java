@@ -34,7 +34,7 @@ public class InstapayTransferMenuItem implements MenuItem {
 
             TransferProcessor transferProcessor = new TransferProcessor();
             transferProcessor.setTransfer(new InstapayTransfer());
-            transferProcessor.makeTransfer(InstapayManager.getInstance().getCurrentUser().getUserName(), username, amount);
+            transferProcessor.makeTransfer(InstapayManager.getCurrentUser().getUserName(), username, amount);
         }
 
     }

@@ -34,7 +34,7 @@ public class WalletTransferMenuItem implements MenuItem {
 
             TransferProcessor transferProcessor = new TransferProcessor();
             transferProcessor.setTransfer(new WalletTransfer());
-            transferProcessor.makeTransfer(InstapayManager.getInstance().getCurrentUser().getMobileNumber(), mobileNumber, amount);
+            transferProcessor.makeTransfer(InstapayManager.getCurrentUser().getMobileNumber(), mobileNumber, amount);
         }
 
     }

@@ -165,10 +165,14 @@ public class InstapayManager {
         if (choice == 1) {
             if (registerUser()) {
                 showUserMenu();
+            }else {
+                showMainMenu();
             }
         } else if (choice == 2) {
             if (loginUser()) {
                 showUserMenu();
+            }else{
+                showMainMenu();
             }
         }
 

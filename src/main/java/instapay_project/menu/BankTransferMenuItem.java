@@ -35,7 +35,7 @@ public class BankTransferMenuItem implements MenuItem {
 
             TransferProcessor transferProcessor = new TransferProcessor();
             transferProcessor.setTransfer(new BankTransfer());
-            transferProcessor.makeTransfer(InstapayManager.getInstance().getCurrentUser().getMobileNumber(), mobileNumber, amount);
+            transferProcessor.makeTransfer(InstapayManager.getCurrentUser().getMobileNumber(), mobileNumber, amount);
         }
 
     }
