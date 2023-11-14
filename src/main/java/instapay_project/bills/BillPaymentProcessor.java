@@ -1,5 +1,10 @@
 package instapay_project.bills;
 
+import instapay_project.InstapayManager;
+import instapay_project.account.Account;
+import instapay_project.account.BankAccount;
+import instapay_project.api.BankAPI;
+import instapay_project.api.WalletProviderAPI;
 import instapay_project.user.User;
 import instapay_project.user.UserType;
 
@@ -29,7 +34,16 @@ public class BillPaymentProcessor {
             System.out.print("Please Choose a Bill Number: ");
             String choice = scanner.nextLine();
             if(Integer.parseInt(choice) <= 9 && Integer.parseInt(choice) >= 1){
-                currentBill = bills.get(Integer.parseInt(choice));
+                currentBill = bills.get(Integer.parseInt(choice) - 1);
+                System.out.println("==================================");
+                System.out.println(currentBill.getDetails());
+                System.out.println("==================================");
+                System.out.print("Do You Confirm this Action (y/n)? ");
+                if(scanner.nextLine().equalsIgnoreCase("y")){
+                    pay();
+                } else {
+                    System.out.println("Operation Canceled.");
+                }
             } else {
                 boolean flag = true;
                 System.out.println("Invalid Choice.");
@@ -37,7 +51,7 @@ public class BillPaymentProcessor {
                     System.out.print("Please Choose a Bill Number: ");
                     choice = scanner.nextLine();
                     if(Integer.parseInt(choice) <= 9 && Integer.parseInt(choice) >= 1){
-                        currentBill = bills.get(Integer.parseInt(choice));
+                        currentBill = bills.get(Integer.parseInt(choice) - 1);
                         flag = false;
                     } else {
                         System.out.println("Invalid Choice, do you want to continue (y/n)?");
@@ -51,11 +65,33 @@ public class BillPaymentProcessor {
     }
 
     public void pay(){
-
+        if(InstapayManager.getCurrentUser().getUserType() == UserType.BANK_USER){
+            Account currentUserAccount = BankAPI.getInstance().findAccount(InstapayManager.getCurrentUser().getMobileNumber());
+            if(currentUserAccount.getBalance() >= currentBill.getAmount()){
+                BankAPI.getInstance().updateBalance(currentUserAccount.getMobileNumber(), -1 * currentBill.getAmount());
+                System.out.println("Bill Payed Successfully");
+            } else {
+                System.out.println("Insufficient Balance, Couldn't Complete Action");
+            }
+        } else {
+            Account currentUserAccount = WalletProviderAPI.getInstance().findAccount(InstapayManager.getCurrentUser().getMobileNumber());
+            if(currentUserAccount.getBalance() >= currentBill.getAmount()){
+                WalletProviderAPI.getInstance().updateBalance(currentUserAccount.getMobileNumber(), -1 * currentBill.getAmount());
+                System.out.println("Bill Payed Successfully");
+            } else {
+                System.out.println("Insufficient Balance, Couldn't Complete Action");
+            }
+        }
     }
 
-    public static void main(String[] args) {
-        BillPaymentProcessor b = new BillPaymentProcessor(new User("mohamed maged", "", "", null, UserType.BANK_USER));
-        b.showAllBills();
-    }
+//    public static void main(String[] args) {
+//        Account account = new BankAccount("1111", "", 150.0);
+//        User user = new User("mohamed maged", "", "", account, UserType.BANK_USER);
+//        InstapayManager.setCurrentUser(user);
+//        BankAPI.getInstance().addAccount(account);
+//        System.out.println("Before Transaction: " + InstapayManager.getCurrentUser().getBalance());
+//        BillPaymentProcessor b = new BillPaymentProcessor(InstapayManager.getCurrentUser());
+//        b.showAllBills();
+//        System.out.println("After Transaction: " + InstapayManager.getCurrentUser().getBalance());
+//    }
 }
