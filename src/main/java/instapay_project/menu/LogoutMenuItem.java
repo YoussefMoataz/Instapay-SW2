@@ -1,8 +1,10 @@
 package instapay_project.menu;
 
-public class InstapayTransferMenuItem implements MenuItem {
+import instapay_project.InstapayManager;
 
-    String command = "Transfer to Another instapay account";
+public class LogoutMenuItem implements MenuItem{
+
+    String command = "Logout";
 
     @Override
     public void printCommand() {
@@ -16,7 +18,6 @@ public class InstapayTransferMenuItem implements MenuItem {
 
     @Override
     public void doAction() {
-        // todo transfer
+        InstapayManager.getInstance().logout();
     }
 }
-

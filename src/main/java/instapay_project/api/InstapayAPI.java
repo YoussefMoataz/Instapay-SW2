@@ -33,4 +33,8 @@ public class InstapayAPI {
         return null;
     }
 
+    public void addUser(User user){
+        users.add(user);
+    }
+
 }

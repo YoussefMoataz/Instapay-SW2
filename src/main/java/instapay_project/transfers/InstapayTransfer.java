@@ -13,7 +13,7 @@ import instapay_project.user.UserType;
 public class InstapayTransfer implements Transfer{
     @Override
     public void makeTransfer(String sender, String recipient, Double amount) {
-        User user1 = InstapayManager.getCurrentUser();
+        User user1 = InstapayManager.getInstance().getCurrentUser();
         User user2 = InstapayAPI.getInstance().getUser(recipient);
         if(user2 != null){
             if(user1.getUserType() == user2.getUserType() && user1.getUserType() == UserType.BANK_USER){

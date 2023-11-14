@@ -4,15 +4,23 @@ import instapay_project.InstapayManager;
 import instapay_project.user.User;
 
 public class BalanceInquiryMenuItem implements MenuItem {
+
+    String command = "Check my balance";
+
     @Override
     public void printCommand() {
-        System.out.println("Transfer to Bank account using account number");
+        System.out.println(command);
+    }
+
+    @Override
+    public String getCommand() {
+        return command;
     }
 
     @Override
     public void doAction() {
 
-        User user = InstapayManager.getCurrentUser();
+        User user = InstapayManager.getInstance().getCurrentUser();
 
         if (user != null) {
             System.out.println(user.getUserName() + " has balance: " + user.getBalance());
