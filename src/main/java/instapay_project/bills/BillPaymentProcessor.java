@@ -54,8 +54,8 @@ public class BillPaymentProcessor {
 
     }
 
-    public static void main(String[] args) {
-        BillPaymentProcessor b = new BillPaymentProcessor(new User("mohamed maged", "", "", null, UserType.BANK_USER));
-        b.showAllBills();
-    }
+//    public static void main(String[] args) {
+//        BillPaymentProcessor b = new BillPaymentProcessor(new User("mohamed maged", "", "", null, UserType.BANK_USER));
+//        b.showAllBills();
+//    }
 }

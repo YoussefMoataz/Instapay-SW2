@@ -7,10 +7,10 @@ import instapay_project.user.BankRegistration;
 
 public class Main {
     public static void main(String[] args) {
-        Account a =new BankAccount("011","01111111111",520D);
-        BankAPI.getInstance().addAccount(a);
 
-        InstapayManager manager = new InstapayManager();
+        new DummyDataMaker().createUsersWithAccounts();
+
+        InstapayManager manager = InstapayManager.getInstance();
         manager.run();
     }
 }
