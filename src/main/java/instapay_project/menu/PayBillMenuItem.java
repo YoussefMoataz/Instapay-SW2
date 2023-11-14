@@ -1,5 +1,8 @@
 package instapay_project.menu;
 
+import instapay_project.InstapayManager;
+import instapay_project.bills.BillPaymentProcessor;
+
 public class PayBillMenuItem implements MenuItem {
 
     String command = "Pay bills";
@@ -16,7 +19,7 @@ public class PayBillMenuItem implements MenuItem {
 
     @Override
     public void doAction() {
-        // todo bTP.showBills()
+        new BillPaymentProcessor(InstapayManager.getInstance().getCurrentUser()).showAllBills();
     }
 }
 
