@@ -1,5 +1,6 @@
 package instapay_project;
 
+import instapay_project.api.InstapayAPI;
 import instapay_project.menu.MenuItem;
 import instapay_project.user.BankRegistration;
 import instapay_project.user.Registration;
@@ -9,12 +10,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InstapayManager {
-    private static ArrayList<User> users;
+    private ArrayList<User> users;
     private ArrayList<MenuItem> menuItems;
     private static User currentUser;
 
     InstapayManager() {
-        users = new ArrayList<>();
+        users = InstapayAPI.getInstance().getUsers();
         menuItems = new ArrayList<>();
         currentUser = null;
     }
@@ -92,13 +93,4 @@ public class InstapayManager {
 
     }
 
-    public static User getUser(String userName) {
-        User user = null;
-        for(User u: users){
-            if(u.getUserName().equals(userName)){
-                user = u;
-            }
-        }
-        return user;
-    }
 }
