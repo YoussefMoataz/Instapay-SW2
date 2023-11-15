@@ -20,7 +20,7 @@ public class BalanceInquiryMenuItem implements MenuItem {
     @Override
     public void doAction() {
 
-        User user = InstapayManager.getInstance().getCurrentUser();
+        User user = InstapayManager.getCurrentUser();
 
         if (user != null) {
             System.out.println(user.getUserName() + " has balance: " + user.getBalance());

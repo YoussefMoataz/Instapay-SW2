@@ -19,7 +19,7 @@ public class PayBillMenuItem implements MenuItem {
 
     @Override
     public void doAction() {
-        new BillPaymentProcessor(InstapayManager.getInstance().getCurrentUser()).showAllBills();
+        new BillPaymentProcessor(InstapayManager.getCurrentUser()).showAllBills();
     }
 }
 
