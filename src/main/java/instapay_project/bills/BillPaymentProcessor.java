@@ -33,7 +33,7 @@ public class BillPaymentProcessor {
         if(scanner.nextLine().equalsIgnoreCase("y")){
             System.out.print("Please Choose a Bill Number: ");
             String choice = scanner.nextLine();
-            if(Integer.parseInt(choice) <= 9 && Integer.parseInt(choice) >= 1){
+            if(Integer.parseInt(choice) <= bills.size() && Integer.parseInt(choice) >= 1){
                 currentBill = bills.get(Integer.parseInt(choice) - 1);
                 System.out.println("==================================");
                 System.out.println(currentBill.getDetails());
@@ -50,9 +50,18 @@ public class BillPaymentProcessor {
                 do{
                     System.out.print("Please Choose a Bill Number: ");
                     choice = scanner.nextLine();
-                    if(Integer.parseInt(choice) <= 9 && Integer.parseInt(choice) >= 1){
+                    if(Integer.parseInt(choice) <= bills.size() && Integer.parseInt(choice) >= 1){
                         currentBill = bills.get(Integer.parseInt(choice) - 1);
                         flag = false;
+                        System.out.println("==================================");
+                        System.out.println(currentBill.getDetails());
+                        System.out.println("==================================");
+                        System.out.print("Do You Confirm this Action (y/n)? ");
+                        if(scanner.nextLine().equalsIgnoreCase("y")){
+                            pay();
+                        } else {
+                            System.out.println("Operation Canceled.");
+                        }
                     } else {
                         System.out.println("Invalid Choice, do you want to continue (y/n)?");
                         if(!scanner.nextLine().equalsIgnoreCase("y")){
